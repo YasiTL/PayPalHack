@@ -6,41 +6,56 @@ import android.content.Intent;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.Handler;
+import android.speech.tts.TextToSpeech;
 import android.view.GestureDetector;
 import android.view.GestureDetector.OnGestureListener;
 import android.view.View;
 import android.view.MotionEvent;
 import android.widget.TextView;
+
+import java.util.Locale;
 import java.util.Timer;
 import java.util.TimerTask;
+import android.util.Log;
 
 
 public class MainActivity extends AppCompatActivity implements OnGestureListener {
     GestureDetector gestureDetector;
-    TextView lbl1;
+    TextView lbl1, money;
+    TextToSpeech talk;
+    double rnum;
   //  boolean opened;
-  private Handler handler1= new Handler();
-  private Timer timer = new Timer();
+
+  private MediaPlayer ring4;
+ // private TextView money;
+  private static final String LOGCAT = null;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         gestureDetector = new GestureDetector(MainActivity.this, MainActivity.this);
+       // rnum = (int)(Math.random()* 50+1);
 
 
-        timer.schedule(new TimerTask() {
+        money = (TextView)findViewById(R.id.textView2);
+
+        talk = new TextToSpeech(this, new TextToSpeech.OnInitListener() {
             @Override
-            public void run() {
-                handler1.post(new Runnable() {
-                    @Override
-                    public void run() {
-                        MediaPlayer ring4= MediaPlayer.create(MainActivity.this,R.raw.speak1);
-                        ring4.start();
-                        ring4.setVolume(500,500);
+            public void onInit(int status) {
+                if(status == TextToSpeech.SUCCESS){
+                    talk.setLanguage(Locale.US);
+                    if(talk.equals(TextToSpeech.LANG_MISSING_DATA )|| talk.equals(TextToSpeech.LANG_NOT_SUPPORTED)){
+                        money.setText(":(");
                     }
-                });
+                    else{
+                        String txt = "Hi testuser you're account balance is" + money.getText().toString();
+                        talk.speak(txt,TextToSpeech.QUEUE_FLUSH,null);
+                    }
+                }
+
             }
-        },0,1);
+        });
+
     }
 
     @Override

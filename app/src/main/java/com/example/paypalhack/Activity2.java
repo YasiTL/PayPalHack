@@ -11,16 +11,18 @@ import android.view.View;
 import android.view.GestureDetector.OnGestureListener;
 
 import android.widget.Button;
+import android.widget.ListView;
 
 public class Activity2 extends AppCompatActivity implements OnGestureListener  {
     Button btn2 ;
     GestureDetector gestureDetector;
-
+    ListView list;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.transactions);
         gestureDetector = new GestureDetector(Activity2.this, Activity2.this);
+        list = (ListView)findViewById(R.id.listView);
 
 //        btn2.setOnClickListener(new View.OnClickListener() {
 //            @Override
