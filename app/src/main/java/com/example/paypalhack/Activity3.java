@@ -16,7 +16,7 @@ public class Activity3 extends AppCompatActivity implements OnGestureListener {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.transactions);
+        setContentView(R.layout.checking);
         gestureDetector = new GestureDetector(Activity3.this,Activity3.this);
 
     }
