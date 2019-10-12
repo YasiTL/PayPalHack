@@ -3,6 +3,7 @@ package com.example.paypalhack;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.view.GestureDetector;
 import android.view.GestureDetector.OnGestureListener;
@@ -25,6 +26,8 @@ public class MainActivity extends AppCompatActivity implements OnGestureListener
     public boolean onFling(MotionEvent motionEvent1, MotionEvent motionEvent2, float X, float Y) {
         if (motionEvent1.getX() - motionEvent2.getX() > 50) {
             //   Toast.makeText(MainActivity.this, "You Swiped Left!", Toast.LENGTH_LONG).show();
+            MediaPlayer ring2= MediaPlayer.create(MainActivity.this,R.raw.open2);
+            ring2.start();
             View v = new View(MainActivity.this);
             Intent intent = new Intent (v.getContext(), Activity2.class);
             startActivityForResult(intent, 0);

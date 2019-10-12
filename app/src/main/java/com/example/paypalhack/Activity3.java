@@ -2,6 +2,7 @@ package com.example.paypalhack;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.content.Intent;
 import android.view.GestureDetector;
@@ -29,6 +30,8 @@ public class Activity3 extends AppCompatActivity implements OnGestureListener {
         }
         if (motionEvent2.getX() - motionEvent1.getX() > 50) {
             // Toast.makeText(MainActivity.this, "You Swiped Right!", Toast.LENGTH_LONG).show();
+            MediaPlayer ring2= MediaPlayer.create(Activity3.this,R.raw.open2);
+            ring2.start();
             View v = new View(Activity3.this);
             Intent intent = new Intent (v.getContext(), Activity2.class);
             startActivityForResult(intent, 0);

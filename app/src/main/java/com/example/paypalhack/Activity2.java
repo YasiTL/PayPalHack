@@ -3,6 +3,7 @@ package com.example.paypalhack;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
@@ -40,6 +41,8 @@ public class Activity2 extends AppCompatActivity implements OnGestureListener  {
             View v = new View(Activity2.this);
             Intent intent = new Intent (v.getContext(), Activity3.class);
             startActivityForResult(intent, 0);
+            MediaPlayer ring2= MediaPlayer.create(Activity2.this,R.raw.open3);
+            ring2.start();
 
             return true;
         }
@@ -48,6 +51,8 @@ public class Activity2 extends AppCompatActivity implements OnGestureListener  {
             View v = new View(Activity2.this);
             Intent intent = new Intent (v.getContext(), MainActivity.class);
             startActivityForResult(intent, 0);
+            MediaPlayer ring2= MediaPlayer.create(Activity2.this,R.raw.open1);
+            ring2.start();
             return true;
         } else {
             return true;
